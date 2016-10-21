@@ -24,6 +24,7 @@
     "browserify": "13.1.0",
     "ejs": "2.5.2",
     "express": "4.14.0",
+    "marked": "0.3.6",
     "@turf/turf": "3.5.2",
     "uglifyify": "3.0.4"
   },

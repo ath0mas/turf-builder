@@ -26,9 +26,12 @@
 	</div>	
 	<div class="modules">
 		<h3>Available modules</h3>
-		<ul id="modulesList">
+		<ul>
 			<li v-for="item in turfModules">
-				<label><input type="checkbox" name="{{item}}" value="{{item}}" v-model="selectedModules" />{{ item }}</label>
+				<div>
+					<label><input type="checkbox" name="{{item}}" value="{{item}}" v-model="selectedModules" />{{item}}</label>
+					<a href="/doc/{{item}}" onclick="event.preventDefault();var popup = window.open('/doc/{{item}}', 'turf-builder', 'width=600,height=400');popup.focus();">(i)</a>
+				</div>
 			</li>
 		</ul>
 		<div v-if="processing" transition="expand" class="progress">

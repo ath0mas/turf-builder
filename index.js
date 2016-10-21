@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 
 var browserify = require('browserify');
 
+var marked = require('marked');
+
 var app = express();
 
 app.use(express.static('assets'));
@@ -17,6 +19,21 @@ app.get("/", function(req, res) {
 	res.render("index", {
 		turfModules: turfModules,
 		turfVersion: turfVersion
+	});
+});
+
+app.get(['/doc', '/doc/:module'], function(req, res) {
+	var path = './README.md';
+	var module = req.params['module'];
+	if (turfModules.indexOf(module) >= 0) {
+		path = turfLocation + '/' + module + '/README.md';
+	}
+	fs.readFile(path, 'utf8', function(err, data) {
+		if (err) {
+			res.sendStatus(404);
+		} else {
+			res.send(marked(data));
+		}
 	});
 });
 
